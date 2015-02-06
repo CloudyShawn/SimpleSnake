@@ -1,0 +1,1 @@
+G:\Projects\Visual Studio Projects\Snake\Snake\SnakeContent\obj\x86\Debug\SnakeContent.contentprojResolveAssemblyReference.cache

@@ -1,0 +1,2 @@
+Content\clear block.xnb
+Content\white block.xnb
