@@ -4,5 +4,5 @@ G:\Projects\Visual Studio Projects\Snake\Snake\Snake\obj\x86\Debug\Snake.csprojR
 G:\Projects\Visual Studio Projects\Snake\Snake\Snake\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 G:\Projects\Visual Studio Projects\Snake\Snake\Snake\obj\x86\Debug\Snake.exe
 G:\Projects\Visual Studio Projects\Snake\Snake\Snake\obj\x86\Debug\Snake.pdb
-G:\Projects\Visual Studio Projects\Snake\Snake\Snake\bin\x86\Debug\Content\clear block.xnb
 G:\Projects\Visual Studio Projects\Snake\Snake\Snake\bin\x86\Debug\Content\white block.xnb
+G:\Projects\Visual Studio Projects\Snake\Snake\Snake\bin\x86\Debug\Content\TimesNewRoman.xnb

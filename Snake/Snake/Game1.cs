@@ -1,3 +1,14 @@
+/**************************************************************
+ * Project Name:        Snake
+ * Creater:             CloudyShawn
+ * Last Modified Date:  06/02/2015
+ * Description:         Basic original snake game, currently no
+ *                  menus are implemented but game is fully 
+ *                  functional. Map sizes and block sizes are
+ *                  editable as well. Score working.
+ *************************************************************/
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +30,12 @@ namespace Snake
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        SpriteFont TimesRoman;
+
         const int FRAME = 50;
         int frameCounter;
 
+        KeyboardState curKeyboardState;
 
         enum GameState
         {
@@ -43,11 +57,11 @@ namespace Snake
 
         int[][] map;
         int blockSize;
-        Texture2D clearBlock;
         Texture2D whiteBlock;
 
         int snakeSize;
-        Direction snakeDir;
+        Direction curDir;
+        Direction oldDir;
         Vector2 snakePos;
 
         Random random;
@@ -75,14 +89,13 @@ namespace Snake
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            clearBlock = Content.Load<Texture2D>("clear block");
             whiteBlock = Content.Load<Texture2D>("white block");
+            TimesRoman = Content.Load<SpriteFont>("TimesNewRoman");
         }
 
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-            clearBlock.Dispose();
             whiteBlock.Dispose();
         }
 
@@ -102,7 +115,7 @@ namespace Snake
                     UpdateHighScore();
                     break;
                 case GameState.LOAD:
-                    NewGame(100, 100, 5);
+                    NewGame(60, 40, 10);
                     break;
                 case GameState.MENU:
                     UpdateMenu();
@@ -114,7 +127,7 @@ namespace Snake
 
         private void UpdateMenu()
         {
-
+            
         }
 
         private void NewGame(int width, int height, int size)
@@ -138,7 +151,7 @@ namespace Snake
             snakePos = new Vector2(width / 2, height / 2);
             map[(int)snakePos.X][(int)snakePos.Y] = snakeSize;
 
-            snakeDir = Direction.UP;
+            curDir = Direction.UP;
             isNoFood = true;
             blockSize = size;
 
@@ -151,22 +164,22 @@ namespace Snake
 
         private void UpdateGame(GameTime gameTime)
         {
-            KeyboardState curKeyboardState = Keyboard.GetState();
-            if (curKeyboardState.IsKeyDown(Keys.Left) && snakeDir != Direction.RIGHT)
+            curKeyboardState = Keyboard.GetState();
+            if (curKeyboardState.IsKeyDown(Keys.Left) && oldDir != Direction.RIGHT)
             {
-                snakeDir = Direction.LEFT;
+                curDir = Direction.LEFT;
             }
-            else if (curKeyboardState.IsKeyDown(Keys.Right) && snakeDir != Direction.LEFT)
+            else if (curKeyboardState.IsKeyDown(Keys.Right) && oldDir != Direction.LEFT)
             {
-                snakeDir = Direction.RIGHT;
+                curDir = Direction.RIGHT;
             }
-            else if (curKeyboardState.IsKeyDown(Keys.Up) && snakeDir != Direction.DOWN)
+            else if (curKeyboardState.IsKeyDown(Keys.Up) && oldDir != Direction.DOWN)
             {
-                snakeDir = Direction.UP;
+                curDir = Direction.UP;
             }
-            else if (curKeyboardState.IsKeyDown(Keys.Down) && snakeDir != Direction.UP)
+            else if (curKeyboardState.IsKeyDown(Keys.Down) && oldDir != Direction.UP)
             {
-                snakeDir = Direction.DOWN;
+                curDir = Direction.DOWN;
             }
 
             while (isNoFood)
@@ -184,7 +197,7 @@ namespace Snake
 
             if (frameCounter >= FRAME)
             {
-                switch (snakeDir)
+                switch (curDir)
                 {
                     case Direction.DOWN:
                         if (snakePos.Y == map[0].Length - 1)
@@ -244,6 +257,8 @@ namespace Snake
                 map[(int)snakePos.X][(int)snakePos.Y] = snakeSize;
 
                 frameCounter -= FRAME;
+
+                oldDir = curDir;
             }
         }
 
@@ -303,16 +318,14 @@ namespace Snake
             {
                 for (int j = 0; j < map[0].Length; j++)
                 {
-                    if (map[i][j] == 0)
-                    {
-                        spriteBatch.Draw(clearBlock, new Vector2(i * blockSize, j * blockSize), new Rectangle(0, 0, blockSize, blockSize), Color.White);
-                    }
-                    else
+                    if (map[i][j] != 0)
                     {
                         spriteBatch.Draw(whiteBlock, new Vector2(i * blockSize, j * blockSize), new Rectangle(0, 0, blockSize, blockSize), Color.White);
                     }
                 }
             }
+
+            spriteBatch.DrawString(TimesRoman, "Score: " + snakeSize.ToString(), new Vector2(10, 10), Color.Black);
         }
 
         private void DrawHighScore()

@@ -2,15 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>clear block.png</Source>
-      <Name>clear block</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>G:\Projects\Visual Studio Projects\Snake\Snake\Snake\bin\x86\Debug\Content\clear block.xnb</Output>
-      <Time>2015-01-17T14:44:55.184539-05:00</Time>
-    </Item>
-    <Item>
       <Source>white block.png</Source>
       <Name>white block</Name>
       <Importer>TextureImporter</Importer>
@@ -18,6 +9,15 @@
       <Options>None</Options>
       <Output>G:\Projects\Visual Studio Projects\Snake\Snake\Snake\bin\x86\Debug\Content\white block.xnb</Output>
       <Time>2015-01-17T14:43:39.6072163-05:00</Time>
+    </Item>
+    <Item>
+      <Source>TimesNewRoman.spritefont</Source>
+      <Name>TimesNewRoman</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>G:\Projects\Visual Studio Projects\Snake\Snake\Snake\bin\x86\Debug\Content\TimesNewRoman.xnb</Output>
+      <Time>2015-02-06T03:59:25.0900845-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
